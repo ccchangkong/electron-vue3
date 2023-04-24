@@ -1,17 +1,18 @@
 <script setup>
 import { ref, inject } from 'vue'
 
-const visible = inject('visible');
+const setIsVisble = inject('setIsVisble');
 
 const handleClick = () => {
-    visible.value = true;
+    setIsVisble(true);
 };
+const { keywords } = inject('keywords');
 
 </script>
 
 <template>
     <div class="search-box">
-        <a-input-search :style="{ width: '320px' }" placeholder="Please enter something" search-button />
+        <a-input-search :style="{ width: '320px' }" placeholder="Please enter something" search-button v-model="keywords" />
         <a-button type="primary" @click="handleClick">
             <template #icon>
                 <icon-plus />

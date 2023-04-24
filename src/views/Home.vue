@@ -2,33 +2,24 @@
 import { ref, provide } from 'vue'
 import SearcherBar from '../components/SearcherBar.vue'
 import List from '../components/List.vue'
-import useWebStroe from '@/stroe/index.js'
-const webStroe = useWebStroe()
+import Modal from '../components/Modal.vue'
 const visible = ref(false);
+const keywords = ref("")
+const setKeywords = (key) => {
+  keywords.value = key
+}
+provide('keywords', {
+  keywords,
+  setKeywords
+})
+
+const setIsVisble = (value, url = '') => {
+  keywords.value = url
+  visible.value = value
+}
 provide('visible', visible)
-const str = ref("https://www.baidu.com");
+provide('setIsVisble', setIsVisble)
 
-let btnAbled = true
-
-const handleOk = () => {
-  if (btnAbled) {
-    visible.value = false;
-  }
-
-};
-const handleCancel = () => {
-
-  if (btnAbled) {
-    visible.value = false;
-  }
-}
-const handleAdd = async () => {
-  btnAbled = false
-  const result = await myApi.sendUrl(str.value)
-  webStroe.add(result)
-  btnAbled = true
-  // visible.value = false;
-}
 
 
 </script>
@@ -37,19 +28,7 @@ const handleAdd = async () => {
   <main>
     <SearcherBar />
     <List />
-    <a-modal v-model:visible="visible" @ok="handleOk" @cancel="handleCancel" :mask-closable="false">
-      <template #title>
-        Title
-      </template>
-      <div><a-input :style="{ width: '320px' }" default-value="content" placeholder="Please enter something" allow-clear
-          v-model="str" />
-        <a-button type="primary" @click="handleAdd">
-          <template #icon>
-            <icon-plus />
-          </template>
-        </a-button>
-      </div>
-    </a-modal>
+    <Modal />
   </main>
 </template>
 

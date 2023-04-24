@@ -1,10 +1,11 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, inject } from 'vue'
 import useWebStroe from '@/stroe/index.js'
 import { storeToRefs } from 'pinia'
 const webStroe = useWebStroe()
 const { websites } = storeToRefs(webStroe)
 
+const setIsVisble = inject('setIsVisble');
 onMounted(() => {
   webStroe.init()
 })
@@ -22,7 +23,7 @@ onMounted(() => {
         </template>
       </a-list-item-meta>
       <template #actions>
-        <icon-edit />
+        <icon-edit @click="setIsVisble(true, item.url)" />
         <icon-delete @click="webStroe.deleteItem(item.url)" />
       </template>
     </a-list-item>
