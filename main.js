@@ -1,11 +1,13 @@
 // import {app,BrowserWindow}from "electron"
-const { app, BrowserWindow,Menu } = require("electron")
+const { app, BrowserWindow, Menu } = require("electron")
 
 const path = require('path')
 
 require('./controller/getSource')
+require('./controller/alert')
+
 const createWindow = () => {
-    Menu.setApplicationMenu(null) 
+    Menu.setApplicationMenu(null)
     const win = new BrowserWindow({
         width: 800,
         height: 600,
@@ -15,7 +17,7 @@ const createWindow = () => {
             preload: path.join(__dirname, 'preload/index.js'),
             // nodeIntegration:true,//渲染教程允许使用node
             // contextIsolation:false,//取消隔离
-          },
+        },
     })
     win.loadURL(' http://localhost:5173/')
     win.webContents.openDevTools()
@@ -28,7 +30,7 @@ app.whenReady().then(() => {
             createWindow()
         }
     })
-   
+
 })
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {

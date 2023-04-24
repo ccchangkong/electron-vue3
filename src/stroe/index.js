@@ -9,7 +9,9 @@ const useWebStroe = defineStore('websiteStroe', {
     },
     actions: {
         add(item) {
-            if (!~this.websites.findIndex(el => el.url == item.url)) {
+            if (~this.websites.findIndex(el => el.url == item.url)) {
+                myApi.alert("此网站已添加")
+            } else {
                 this.websites.unshift(item)
                 store('websites', this.websites)
                 console.log(item)
