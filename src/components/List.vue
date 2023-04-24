@@ -1,24 +1,23 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import useWebStroe from '@/stroe/index.js'
+import { storeToRefs } from 'pinia'
+const webStroe = useWebStroe()
+const { websites } = storeToRefs(webStroe)
 
-defineProps({
-  // msg: String,
+onMounted(() => {
+  webStroe.init()
 })
-
-const arr = ref([0, 1, 2])
-
 
 </script>
 
 <template>
-  <a-list v-if="arr.length">
-    <a-list-item v-for="idx in arr" :key="idx">
-      <a-list-item-meta title="Beijing Bytedance Technology Co., Ltd."
-        description="Beijing ByteDance Technology Co., Ltd. is an enterprise located in China.">
+  <a-list v-if="websites.length">
+    <a-list-item v-for="(item, index) in websites" :key="index">
+      <a-list-item-meta :title="item.title" :description="item.url">
         <template #avatar>
           <a-avatar shape="square">
-            <img alt="avatar"
-              src="https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/3ee5f13fb09879ecb5185e440cef6eb9.png~tplv-uwbnlip3yd-webp.webp" />
+            <img alt="avatar" :src="item.imgUrl" />
           </a-avatar>
         </template>
       </a-list-item-meta>
@@ -29,7 +28,6 @@ const arr = ref([0, 1, 2])
     </a-list-item>
   </a-list>
   <a-empty v-else />
-
 </template>
 
 <style scoped></style>

@@ -1,21 +1,32 @@
 <script setup>
 import { ref } from 'vue'
-
+import useWebStroe from '@/stroe/index.js'
+const webStroe = useWebStroe()
 const visible = ref(false);
 const str = ref("https://www.baidu.com");
+let btnAbled = true
+
 const handleClick = () => {
     visible.value = true;
 };
 const handleOk = () => {
-    visible.value = false;
+    if (btnAbled) {
+        visible.value = false;
+    }
+
 };
 const handleCancel = () => {
-    visible.value = false;
+
+    if (btnAbled) {
+        visible.value = false;
+    }
 }
-const handleAdd = async() => {
-    const result=await myApi.sendUrl(str.value)
-    console.log(result)
-    visible.value = false;
+const handleAdd = async () => {
+    btnAbled = false
+    const result = await myApi.sendUrl(str.value)
+    webStroe.add(result)
+    btnAbled = true
+    // visible.value = false;
 }
 </script>
 
@@ -32,12 +43,13 @@ const handleAdd = async() => {
         <template #title>
             Title
         </template>
-        <div><a-input :style="{ width: '320px' }" default-value="content" placeholder="Please enter something" allow-clear v-model="str"/>
+        <div><a-input :style="{ width: '320px' }" default-value="content" placeholder="Please enter something" allow-clear
+                v-model="str" />
             <a-button type="primary" @click="handleAdd">
-            <template #icon>
-                <icon-plus />
-            </template>
-        </a-button>
+                <template #icon>
+                    <icon-plus />
+                </template>
+            </a-button>
         </div>
     </a-modal>
 </template>
