@@ -6,13 +6,18 @@ const setIsVisble = inject('setIsVisble');
 const handleClick = () => {
     setIsVisble(true);
 };
-const { keywords } = inject('keywords');
+const { keywords, setKeywords } = inject('keywords');
+const searchStr = ref("")
+const searchFn = () => {
+    setKeywords(searchStr.value)
+}
 
 </script>
 
 <template>
     <div class="search-box">
-        <a-input-search :style="{ width: '320px' }" placeholder="Please enter something" search-button v-model="keywords" />
+        <a-input-search :style="{ width: '320px' }" placeholder="Please enter something" search-button v-model="searchStr"
+            @search="searchFn" />
         <a-button type="primary" @click="handleClick">
             <template #icon>
                 <icon-plus />

@@ -5,7 +5,7 @@
             Title
         </template>
         <div><a-input :style="{ width: '320px' }" default-value="content" placeholder="Please enter something" allow-clear
-                v-model="keywords" />
+                v-model="inputVal" />
             <a-button type="primary" @click="handleAdd">
                 <template #icon>
                     <icon-plus />
@@ -20,7 +20,7 @@ import { inject } from 'vue'
 
 import useWebStroe from '@/stroe/index.js'
 const webStroe = useWebStroe()
-const { keywords } = inject('keywords');
+const { inputVal } = inject('inputVal');
 
 
 const visible = inject('visible');
@@ -28,9 +28,6 @@ let btnAbled = true
 
 const handleOk = () => {
     visible.value = false;
-    console.log('sss')
-
-
 };
 const handleBeforeOk = () => {
 
@@ -58,7 +55,7 @@ const handleBeforeCancel = () => {
 
 const handleAdd = async () => {
     btnAbled = false
-    const result = await myApi.sendUrl(keywords.value)
+    const result = await myApi.sendUrl(inputVal.value)
     webStroe.add(result)
     btnAbled = true
     // visible.value = false;

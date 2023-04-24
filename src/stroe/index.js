@@ -1,10 +1,25 @@
 import { defineStore } from 'pinia'
 import store from 'store2'
-import _, { times } from 'lodash'
+import _ from 'lodash'
 const useWebStroe = defineStore('websiteStroe', {
     state() {
         return {
             websites: []
+        }
+    },
+    getters: {
+        find() {
+            return (keywords) => {
+                if (keywords == "") {
+                    return this.websites
+                } else {
+                    return _.filter(this.websites, (item) => {
+                        let partten = new RegExp(keywords, 'i')
+                        return partten.test(item.title)
+                    })
+                }
+
+            }
         }
     },
     actions: {

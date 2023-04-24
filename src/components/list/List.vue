@@ -1,20 +1,21 @@
 <script setup>
-import { ref, onMounted, inject } from 'vue'
-import useWebStroe from '@/stroe/index.js'
+import { inject } from 'vue'
 import { storeToRefs } from 'pinia'
-const webStroe = useWebStroe()
-const { websites } = storeToRefs(webStroe)
+import useWebSites from './useWebStroe'
 
+const { webStroe: useWebStore, keywords } = useWebSites()
+
+const { websites } = storeToRefs(useWebStore)
 const setIsVisble = inject('setIsVisble');
-onMounted(() => {
-  webStroe.init()
-})
 
+const itemCLick = (item) => {
+  window.open(item.url)
+}
 </script>
 
 <template>
   <a-list v-if="websites.length">
-    <a-list-item v-for="(item, index) in websites" :key="item.url">
+    <a-list-item v-for="(item, index) in useWebStore.find(keywords)" :key="item.url" @click="itemCLick(item)">
       <a-list-item-meta :title="item.title" :description="item.url">
         <template #avatar>
           <a-avatar shape="square">
@@ -23,8 +24,8 @@ onMounted(() => {
         </template>
       </a-list-item-meta>
       <template #actions>
-        <icon-edit @click="setIsVisble(true, item.url)" />
-        <icon-delete @click="webStroe.deleteItem(item.url)" />
+        <icon-edit @click.stop="setIsVisble(true, item.url)" />
+        <icon-delete @click.stop="useWebStore.deleteItem(item.url)" />
       </template>
     </a-list-item>
   </a-list>
