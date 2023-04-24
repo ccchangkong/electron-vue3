@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "electron-win-state": "^1.1.22",
+    "got": "^11.8.6",
+    "image-type": "^4.1.0",
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.35",
@@ -23,6 +25,7 @@
     "@vitejs/plugin-vue": "^4.1.0",
     "electron": "^24.1.2",
     "nodemon": "^2.0.22",
+    "randomstring": "^1.2.3",
     "sass": "^1.62.0",
     "unplugin-auto-import": "^0.15.3",
     "unplugin-vue-components": "^0.24.1",

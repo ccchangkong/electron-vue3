@@ -1,7 +1,7 @@
 const { ipcMain, BrowserWindow } = require('electron')
 const { default: WinState } = require('electron-win-state')
 const path = require('path')
-
+const saveas = require('./saveas')
 // const { WInState } = require('electron-win-state')
 const cssText = `width: 6em;height: 30px;background-color: cornflowerblue;border-radius: 5px;text-align: center;line-height: 30px;position: fixed;bottom: 50px;right: 20px;z-index: 1000;color: #fff;cursor: pointer;`
 const js = `
@@ -41,7 +41,7 @@ ipcMain.handle('on-open-event', (e, url) => {
 
     })
     win.webContents.on('context-menu', (e, args) => {
-        console.log(args)
+        saveas(args.srcURL)
     })
 })
 ipcMain.handle('on-close-event', (e) => {
