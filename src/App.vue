@@ -1,24 +1,25 @@
 <script setup>
-
+import Header from '@/components/Header.vue'
+import { RouterView } from 'vue-router';
 import Home from './views/Home.vue'
 </script>
 
 <template>
-<Home></Home>
-
+  <Header></Header>
+  <Transition name="fade" mode="out-in">
+    <RouterView></RouterView>
+  </Transition>
+  <!-- <Home></Home> -->
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
