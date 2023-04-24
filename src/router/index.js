@@ -4,11 +4,13 @@ const routes = [
     {
         path: '/',
         name: 'home',
-        component: Home
+        component: Home,
+        meta: { title: '网站收藏' }
     }, {
         path: '/img'
         , name: 'img'
-        , component: () => import('@/views/Img.vue')
+        , component: () => import('@/views/Img.vue'),
+        meta: { title: '图片收藏' }
     }
 ]
 const router = createRouter({

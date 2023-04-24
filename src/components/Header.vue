@@ -2,7 +2,7 @@
     <header>
         <a-menu mode="horizontal" :default-selected-keys="['/']" @menu-item-click="clickFn">
             <a-menu-item :key="item.path" v-for="item in routes">
-                {{ item.name }}
+                {{ item.meta.title }}
             </a-menu-item>
         </a-menu>
     </header>

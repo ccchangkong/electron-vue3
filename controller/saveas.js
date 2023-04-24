@@ -23,7 +23,9 @@ const saveas = (srcUrl) => {
                             fs.writeFileSync(filePath, chunk)
                         }
                     }).catch(e => { })
-                }
+                },
+                accelerator: 'CommandOrControl+S'
+
             }
         ])
         contentMenu.popup()

@@ -11,9 +11,17 @@ const alert = (msg) => {
 const open = (url) => {
     ipcRenderer.invoke('on-open-event', url)
 }
-
+const getFileList = async () => {
+    const filelist = await ipcRenderer.invoke('on-getfiles-event')
+    return filelist
+}
+const openDialog = () => {
+    ipcRenderer.send('on-opendialog-event')
+}
 contextBridge.exposeInMainWorld('myApi', {
     sendUrl,
     alert,
-    open
+    open,
+    getFileList,
+    openDialog
 })

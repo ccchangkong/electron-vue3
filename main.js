@@ -7,8 +7,10 @@ const { default: WinState } = require('electron-win-state')
 require('./controller/getSource')
 require('./controller/alert')
 require('./controller/openWindow')
+require('./controller/getFileList')
+require('./controller/buildMenu')
 const createWindow = () => {
-    Menu.setApplicationMenu(null)
+    // Menu.setApplicationMenu(null)
     const winState = new WinState({
         defaultWidth: 800,
         defaultHeight: 600,
