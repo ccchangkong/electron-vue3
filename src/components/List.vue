@@ -13,7 +13,7 @@ onMounted(() => {
 
 <template>
   <a-list v-if="websites.length">
-    <a-list-item v-for="(item, index) in websites" :key="index">
+    <a-list-item v-for="(item, index) in websites" :key="item.url">
       <a-list-item-meta :title="item.title" :description="item.url">
         <template #avatar>
           <a-avatar shape="square">
@@ -23,7 +23,7 @@ onMounted(() => {
       </a-list-item-meta>
       <template #actions>
         <icon-edit />
-        <icon-delete />
+        <icon-delete @click="webStroe.deleteItem(item.url)" />
       </template>
     </a-list-item>
   </a-list>
