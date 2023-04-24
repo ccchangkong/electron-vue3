@@ -2,15 +2,25 @@
 const { app, BrowserWindow, Menu } = require("electron")
 
 const path = require('path')
+const { default: WinState } = require('electron-win-state')
 
 require('./controller/getSource')
 require('./controller/alert')
-
+require('./controller/openWindow')
 const createWindow = () => {
     Menu.setApplicationMenu(null)
+    const winState = new WinState({
+        defaultWidth: 800,
+        defaultHeight: 600,
+        electronStoreOptions: {
+            name: 'window-state-main'
+        }
+    })
+
     const win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        ...winState,
+        // width: 800,
+        // height: 600,
         // menuBarVisible :true
         // frame:false,//无边框
         webPreferences: {
@@ -20,6 +30,7 @@ const createWindow = () => {
         },
     })
     win.loadURL(' http://localhost:5173/')
+    winState.manage(win)
     win.webContents.openDevTools()
 }
 app.whenReady().then(() => {

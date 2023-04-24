@@ -6,16 +6,19 @@ import Home from './views/Home.vue'
 
 <template>
   <Header></Header>
-  <Transition name="fade" mode="out-in">
-    <RouterView></RouterView>
-  </Transition>
+  <router-view v-slot="{ Component }">
+    <transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
+
   <!-- <Home></Home> -->
 </template>
 
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 
 .fade-enter-from,

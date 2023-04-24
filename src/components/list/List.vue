@@ -9,7 +9,9 @@ const { websites } = storeToRefs(useWebStore)
 const setIsVisble = inject('setIsVisble');
 
 const itemCLick = (item) => {
-  window.open(item.url)
+  myApi.open(item.url)
+  // window.open(item.url)
+
 }
 </script>
 
@@ -32,4 +34,13 @@ const itemCLick = (item) => {
   <a-empty v-else />
 </template>
 
-<style scoped></style>
+<style scoped>
+.xx {
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  z-index: 1000;
+  color: #fff;
+  cursor: pointer;
+}
+</style>

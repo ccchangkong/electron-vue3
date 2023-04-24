@@ -10,6 +10,7 @@
     "start": "nodemon --exec electron . --watch ./ --ext .js,.html,.css,.vue"
   },
   "dependencies": {
+    "electron-win-state": "^1.1.22",
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.35",
