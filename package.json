@@ -7,9 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "nodemon --exec electron . --watch ./ --ext .js,.html,.css,.vue"
+    "starts": "nodemon --exec electron . --watch ./ --ext .js,.html,.css,.vue",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "electron-win-state": "^1.1.22",
     "got": "^11.8.6",
     "image-type": "^4.1.0",
@@ -22,6 +26,11 @@
   },
   "devDependencies": {
     "@arco-design/web-vue": "^2.45.2",
+    "@electron-forge/cli": "^6.1.1",
+    "@electron-forge/maker-deb": "^6.1.1",
+    "@electron-forge/maker-rpm": "^6.1.1",
+    "@electron-forge/maker-squirrel": "^6.1.1",
+    "@electron-forge/maker-zip": "^6.1.1",
     "@vitejs/plugin-vue": "^4.1.0",
     "electron": "^24.1.2",
     "nodemon": "^2.0.22",
