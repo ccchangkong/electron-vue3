@@ -3,6 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "main": "main.js",
+  "author": "changkong",
+  "description": "changkong test",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -20,6 +22,7 @@
     "lodash": "^4.17.21",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.35",
+    "randomstring": "^1.2.3",
     "store2": "^2.14.2",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
@@ -34,7 +37,6 @@
     "@vitejs/plugin-vue": "^4.1.0",
     "electron": "^24.1.2",
     "nodemon": "^2.0.22",
-    "randomstring": "^1.2.3",
     "sass": "^1.62.0",
     "unplugin-auto-import": "^0.15.3",
     "unplugin-vue-components": "^0.24.1",
