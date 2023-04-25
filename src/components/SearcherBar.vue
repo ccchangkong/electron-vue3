@@ -1,5 +1,5 @@
 <script setup>
-import { ref, inject } from 'vue'
+import { ref, inject, watch } from 'vue'
 
 const setIsVisble = inject('setIsVisble');
 
@@ -12,6 +12,17 @@ const searchFn = () => {
     setKeywords(searchStr.value)
 }
 
+// const props = defineProps(['action'])
+// const emits = defineEmits(['update:action'])
+// watch(() => props.action, (action) => {
+//     if (action == 'add') {
+//         handleClick()
+//         emits('update:action', '')
+//     }
+// })
+defineExpose({
+    handleClick
+})
 </script>
 
 <template>

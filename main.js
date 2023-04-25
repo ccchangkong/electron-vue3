@@ -2,6 +2,8 @@
 const { app, BrowserWindow, Menu } = require("electron")
 
 const path = require('path')
+const cerateTray = require('./tray')
+
 const { default: WinState } = require('electron-win-state')
 
 require('./controller/getSource')
@@ -34,6 +36,7 @@ const createWindow = () => {
     win.loadURL(' http://localhost:5173/')
     winState.manage(win)
     win.webContents.openDevTools()
+    cerateTray(app, win)
 }
 app.whenReady().then(() => {
     createWindow()

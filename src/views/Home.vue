@@ -1,8 +1,10 @@
 <script setup>
-import { ref, provide } from 'vue'
+import { ref, provide, onMounted, watch } from 'vue'
 import SearcherBar from '../components/SearcherBar.vue'
 import List from '../components/list/List.vue'
 import Modal from '../components/Modal.vue'
+
+
 const visible = ref(false);
 const inputVal = ref("")
 const setInputVal = (key) => {
@@ -29,11 +31,23 @@ provide('keywords', {
   setKeywords
 })
 
+
+const searchbarRef = ref(null)
+const cb = () => {
+  searchbarRef.value.handleClick()
+}
+onMounted(() => {
+  myApi.openDialog()
+  myApi.onRenderEvent(cb)
+
+
+})
+
 </script>
 
 <template>
   <main>
-    <SearcherBar />
+    <SearcherBar ref="searchbarRef" />
     <List />
     <Modal />
   </main>
